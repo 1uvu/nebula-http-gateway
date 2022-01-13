@@ -36,6 +36,10 @@ type (
 	MetaClientDriver interface {
 		Open() error
 		VerifyClientVersion() error
+		AddHosts(endpoints []string) error
+		DropHosts(endpoints []string) error
+		ListSpaces() (ListSpacesResponse, error)
+		SubmitJobBalance(space string, endpoints ...string) error
 		Close() error
 	}
 
@@ -63,6 +67,10 @@ type (
 		IsSetPlanDesc() bool
 		IsSetComment() bool
 		String() string
+	}
+
+	ListSpacesResponse interface {
+		GetSpaceNames() []string
 	}
 
 	FactoryDriver interface {
